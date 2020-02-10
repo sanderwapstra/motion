@@ -15,7 +15,6 @@ import { PanSession, AnyPointerEvent, PanInfo } from "../gestures/PanSession"
 import { MotionPluginsContext } from "../motion/context/MotionPluginContext"
 import { invariant } from "hey-listen"
 import { mix } from "@popmotion/popcorn"
-import { addDomEvent } from "../events/use-dom-event"
 import { extractEventInfo } from "../events/event-info"
 
 const noop = (v: any) => v
@@ -530,9 +529,9 @@ export class ComponentDragControls {
             }
         )
 
-        const stopResizeListener = addDomEvent(window, "resize", () =>
-            this.scalePoint()
-        )
+        // const stopResizeListener = addDomEvent(window, "resize", () =>
+        //     this.scalePoint()
+        // )
 
         if (this.constraintsNeedResolution) {
             const { dragConstraints, transformPagePoint } = this.props
@@ -551,7 +550,7 @@ export class ComponentDragControls {
 
         return () => {
             stopPointerListener && stopPointerListener()
-            stopResizeListener && stopResizeListener()
+            // stopResizeListener && stopResizeListener()
             this.cancelDrag()
         }
     }
